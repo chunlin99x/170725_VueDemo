@@ -1,0 +1,130 @@
+# 1. 说明
+	官方提供的用来实现SPA的vue插件
+	github: https://github.com/vuejs/vue-router
+	中文文档: http://router.vuejs.org/zh-cn/
+	下载: npm install vue-router --save
+  
+# 2. 相关API说明
+## 1). VueRouter(): 用于创建路由器的构建函数
+    new VueRouter({
+      // 多个配置项
+    })
+
+## 2). 路由配置
+    routes: [
+      { // 一般路由
+        path: '/about',
+        component: about
+      },
+      { // 自动跳转路由
+        path: '/', 
+        redirect: '/about'
+      }
+    ]
+
+## 3). 注册路由器
+	import router from './router'
+	new Vue({
+		router
+	})
+
+## 4). 使用路由组件标签:
+	1. router-link: 用来生成路由链接
+		<router-link to="/xxx">Go to XXX</router-link>
+	2. <router-view>: 用来显示当前路由组件界面
+		<router-view></router-view>
+      
+# 3. 简单路由
+## 1). 路由组件:
+	home.vue
+	about.vue
+
+## 2). 应用组件: App.vue
+    <div>
+      <!--路由链接-->
+      <router-link to="/about">About</router-link>
+      <router-link to="/home">Home</router-link>
+      <!--用于渲染当前路由组件-->
+      <router-view></router-view>  
+    </div>
+
+## 3). 路由器模块: src/router/index.js
+	export default new VueRouter({
+      routes: [
+        {
+          path: '/',
+          redirect: '/about'
+        },
+        {
+          path: '/about',
+          component: about
+        },
+        {
+          path: '/home',
+          component: home
+        }
+      ]
+    })
+
+## 4). 入口js: main.js
+	import Vue from 'vue'
+    import router from './router'
+    // 创建vue配置路由器
+    new Vue({
+      el: '#app',
+      router,
+      render: h => h(app)
+    })
+
+## 5). 优化路由器配置
+    linkActiveClass: 'active', // 指定选中的路由链接的class
+    
+# 4. 嵌套路由
+## 1). 配置嵌套路由
+    path: '/home',
+    component: home,
+    children: [
+      {
+        path: 'news',
+        component: news
+      },
+      {
+        path: 'message',
+        component: message
+      }
+    ]
+
+## 2). 路由链接
+    <router-link to="/home/news">News</router-link>
+    <router-link to="/home/message">Message</router-link>
+
+# 5. 向路由组件传递数据
+## 1). 方式1: 路由路径携带参数
+	1.配置路由
+      children: [
+        {
+          path: 'mdetail/:id',
+          component: messageDetail
+        }
+      ]
+    2.路由路径
+      <router-link :to="'/home/message/mdetail/'+m.id">{{m.title}}</router-link>
+    3.路由组件中读取请求参数
+      this.$route.params.id
+
+## 2). 方式2: <router-view>属性携带数据
+    <router-view :msg="msg"></router-view>
+
+# 6. 缓存路由组件: <keep-alive>
+    <keep-alive>
+      <router-view></router-view>
+    </keep-alive>
+
+# 7. 路由总结
+## 1). 分类 
+	后台路由
+	前台路由
+## 2). 是什么
+	一句话: 就是一个映射关系(key:value)
+	后台路由: path: callback
+	前台路由: path: component
