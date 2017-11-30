@@ -1,11 +1,20 @@
 import Vue from 'vue'
-import App from './App.vue'
-
-// 创建Vue实例对象
+import app from './app.vue'
+/*
 new Vue({
   el: '#app',
-  components: { // 将组件映射成标签
-    App
-  },
-  template: '<App />'   // 当前标签会被插入到el对应的div中
+  components: {app},
+  template: '<app />'
+})*/
+
+/*new Vue({
+  el: '#app',
+  render: function (createElement) {
+    return createElement(app)   // 根据组件创建一个组件标签
+  }
+})*/
+
+new Vue({
+  el: '#app',
+  render: h => h(app)
 })
