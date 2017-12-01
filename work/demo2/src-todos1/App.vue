@@ -1,8 +1,7 @@
 <template>
   <div class="todo-container">
     <div class="todo-wrap">
-      <todo-header @addTodo="addTodo"/> <!--给todo-header绑定了自定义事件监听-->
-     <!-- <todo-header ref="header"/>-->
+      <todo-header :addTodo="addTodo"/>
       <todo-main :todos="todos" :removeTodo="removeTodo"/>
       <todo-footer :todos="todos" :clearCompletedTodos="clearCompletedTodos" :selectAll="selectAll"/>
     </div>
@@ -20,10 +19,6 @@
       return {
         todos: storageUtil.readTodos()
       }
-    },
-
-    mounted () {
-      // this.$refs.header.$on('addTodo', this.addTodo)
     },
 
     watch: {
