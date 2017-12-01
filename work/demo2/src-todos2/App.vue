@@ -4,13 +4,7 @@
       <todo-header @addTodo="addTodo"/> <!--给todo-header绑定了自定义事件监听-->
      <!-- <todo-header ref="header"/>-->
       <todo-main :todos="todos"/>
-      <todo-footer>
-        <input type="checkbox" v-model="isCheck" slot="isCheck"/>
-        <span slot="size">--已完成{{completeSize}} / 全部{{todos.length}} </span>
-        <button class="btn btn-danger"
-                @click="clearCompletedTodos"
-                v-show="completeSize" slot="clearBtn">清除已完成任务</button>
-      </todo-footer>
+      <todo-footer :todos="todos" :clearCompletedTodos="clearCompletedTodos" :selectAll="selectAll"/>
     </div>
   </div>
 </template>
@@ -66,35 +60,6 @@
         this.todos.forEach(todo => {
           todo.completed = isSelectAll
         })
-      }
-    },
-
-    computed: {
-      completeSize () {
-        // 根据数组进行统计
-        /*
-        let size = 0
-        this.todos.forEach(todo => {
-          if(todo.completed) {
-            size++
-          }
-        })
-        return size
-        */
-        return this.todos.reduce((preTotal, todo) => {
-          return preTotal + (todo.completed ? 1 : 0)
-        }, 0)
-
-        // return this.todos.filter(todo => todo.completed).length
-      },
-      isCheck: {
-        get () {
-          return this.todos.length===this.completeSize &&  this.completeSize>0 // 这里不能调用completeSize()
-        },
-        set (value) {
-          this.selectAll(value)
-        }
-
       }
     },
 
