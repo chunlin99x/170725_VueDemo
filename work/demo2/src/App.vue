@@ -1,33 +1,51 @@
 <template>
-  <div>
-    <header class="site-header jumbotron">
-      <div class="container">
-        <div class="row">
-          <div class="col-xs-12">
-            <h1>请发表对React的评论</h1>
-          </div>
-        </div>
-      </div>
-    </header>
-    <div class="container">
-      <add />
-      <list />
+  <div class="todo-container">
+    <div class="todo-wrap">
+      <todo-header :addTodo="addTodo"/>
+      <todo-main :todos="todos"/>
+      <todo-footer/>
     </div>
   </div>
 </template>
 
 <script>
-  import add from './components/add.vue'
-  import list from './components/list.vue'
+  import Header from './components/Header.vue'
+  import Main from './components/Main.vue'
+  import Footer from './components/Footer.vue'
 
   export default {
+    data () {
+      return {
+        todos: [
+          {text: '吃饭', completed: false},
+          {text: '睡觉', completed: true},
+          {text: '打代码', completed: false},
+        ]
+      }
+    },
+
+    methods: {
+      addTodo (todo) {
+        this.todos.unshift(todo)
+      }
+    },
+
     components: {
-      add,
-      list
+      'todo-header': Header,
+      'todo-main': Main,
+      'todo-footer': Footer
     }
   }
 </script>
 
 <style>
-
+  .todo-container {
+    width: 600px;
+    margin: 0 auto;
+  }
+  .todo-container .todo-wrap {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
 </style>

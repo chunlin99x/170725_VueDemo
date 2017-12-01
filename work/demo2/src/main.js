@@ -1,20 +1,9 @@
 import Vue from 'vue'
-import app from './app.vue'
-/*
-new Vue({
-  el: '#app',
-  components: {app},
-  template: '<app />'
-})*/
+import App from './App.vue'
 
-/*new Vue({
-  el: '#app',
-  render: function (createElement) {
-    return createElement(app)   // 根据组件创建一个组件标签
-  }
-})*/
+import './base.css' // 引入的样式对所有组件都可见
 
 new Vue({
   el: '#app',
-  render: h => h(app)
+  render: h => h(App)
 })
