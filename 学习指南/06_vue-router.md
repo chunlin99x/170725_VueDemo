@@ -119,7 +119,14 @@
     <keep-alive>
       <router-view></router-view>
     </keep-alive>
-
+    
+# 7. 路由的编程式导航
+	this.$router.push(path): 相当于点击路由链接(可以返回到当前路由界面)
+	this.$router.replace(path): 用新路由替换当前路由(不可以返回到当前路由界面)
+	this.$router.back(): 请求(返回)上一个记录路由
+	this.$router.go(-1): 请求(返回)上一个记录路由
+	this.$router.go(1): 请求下一个记录路由
+	
 # 7. 路由总结
 ## 1). 分类 
 	后台路由
