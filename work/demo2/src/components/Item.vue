@@ -5,7 +5,7 @@
       <input type="checkbox" v-model="todo.completed"/>
       <span>{{todo.text}}</span>
     </label>
-    <button class="btn btn-danger" v-show="isShow">删除</button>
+    <button class="btn btn-danger" v-show="isShow" @click="remove">删除</button>
   </li>
 </template>
 
@@ -13,7 +13,8 @@
   export default {
     props: {
       todo: Object,
-      index: Number
+      index: Number,
+      removeTodo: Function
     },
 
     data () {
@@ -32,6 +33,11 @@
           this.bgColor = 'white'
           this.isShow = false
         }
+      },
+
+      remove () {
+        const {index, removeTodo} = this
+        removeTodo(index)
       }
     }
   }
