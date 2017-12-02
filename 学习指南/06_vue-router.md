@@ -133,6 +133,11 @@
 	this.$router.back(): 请求(返回)上一个记录路由
 	this.$router.go(-1): 请求(返回)上一个记录路由
 	this.$router.go(1): 请求下一个记录路由
+
+
+	页面跳转:
+		<a href="/xxx">
+		window.location = '/xxx'
 	
 # 7. 路由总结
 ## 1). 分类 

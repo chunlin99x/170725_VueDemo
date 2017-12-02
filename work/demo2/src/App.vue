@@ -20,7 +20,9 @@
         <div class="panel">
           <div class="panel-body">
             <!--路由视图: 显示当前路由组件-->
-            <router-view></router-view>
+            <keep-alive>
+              <router-view msg="abc"></router-view>
+            </keep-alive>
           </div>
         </div>
       </div>
