@@ -1,32 +1,36 @@
 <template>
-  <div class="container">
-    <Search :setSearchName="setSearchName"/>
-    <MyMain :searchName="searchName"/>
+  <div>
+    <div class="row">
+      <div class="col-xs-offset-2 col-xs-8">
+        <div class="page-header">
+          <h2>Router Basic - 01</h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-2 col-xs-offset-2">
+        <div class="list-group">
+          <!--路由链接-->
+          <router-link to="/about" class="list-group-item">About</router-link>
+          <router-link to="/home" class="list-group-item">Home</router-link>
+        </div>
+      </div>
+      <div class="col-xs-6">
+        <div class="panel">
+          <div class="panel-body">
+            <!--路由视图: 显示当前路由组件-->
+            <router-view></router-view>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-  import Search from './components/Search.vue'
-  import Main from './components/Main.vue'
 
-  export default {
-    data () {
-      return {
-        searchName: ''
-      }
-    },
-
-    methods: {
-      setSearchName (searchName) {
-        this.searchName = searchName
-      }
-    },
-
-    components: {
-      Search,
-      'MyMain': Main
-    }
-  }
+  export default {}
 </script>
 
 <style>
