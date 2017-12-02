@@ -1,15 +1,15 @@
 <template>
   <div class="container">
-    <Search :setSearchName="setSearchName"/>
-    <MyMain :searchName="searchName"/>
+    <search :setSearchName="setSearchName"></search>
+    <xxx-main :searchName="searchName"></xxx-main>
   </div>
 </template>
 
 <script>
-  import Search from './components/Search.vue'
-  import Main from './components/Main.vue'
-
+  import search from './search.vue'
+  import main from './main.vue'
   export default {
+
     data () {
       return {
         searchName: ''
@@ -18,13 +18,14 @@
 
     methods: {
       setSearchName (searchName) {
+        console.log(this)
         this.searchName = searchName
       }
     },
 
     components: {
-      Search,
-      'MyMain': Main
+      search,
+      'xxx-main': main
     }
   }
 </script>
