@@ -51,7 +51,7 @@
         npm install -g serve
         serve dist
         访问: http://localhost:5000
-    3. 发布2: 使用实现web服务器(tomcat)
+    3. 发布2: 使用web服务器(tomcat)
         修改配置: webpack.base.conf.js
             publicPath: '/xxx/'   // 项目文件夹的名称
         重新打包:
