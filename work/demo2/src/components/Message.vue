@@ -3,13 +3,16 @@
     <ul>
       <li v-for="(message, index) in messages" :index="index">
         <router-link :to="`/home/message/detail/${message.id}`">{{message.title}}</router-link>
+        <button @click="showDetail(message.id)">使用按钮跳转</button>
       </li>
     </ul>
+    <input type="text">
     <router-view></router-view>
   </div>
 </template>
 
 <script>
+
   export default {
     data () {
       return {
@@ -26,6 +29,12 @@
           {id: 5, title: 'message05'},
         ]
       }, 1000)
+    },
+
+    methods: {
+      showDetail (id) {
+        this.$router.push(`/home/message/detail/${id}`)
+      }
     }
   }
 </script>

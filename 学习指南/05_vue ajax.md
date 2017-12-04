@@ -38,3 +38,9 @@
       .then((response) => {
         console.log(response.data) // 得到返回结果数据
       })
+
+# 4. 在哪去发请求
+	1. 初始化
+		mounted() {}
+	2. 响应事件更新
+		事件回调函数或相关数据监视函数中

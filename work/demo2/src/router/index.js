@@ -9,10 +9,12 @@ import Home from '../components/Home.vue'
 import News from '../components/News.vue'
 import Message from '../components/Message.vue'
 import MessageDetail from '../components/MessageDetail.vue'
+import NotFound from '../components/NotFound.vue'
 
 Vue.use(VueRouter)
 
-export default new VueRouter({
+const router = new VueRouter({
+  mode: 'history',   // 默认值: hash
   linkActiveClass: 'active',
   // 注册应用中所有的路由
   routes: [
@@ -44,6 +46,12 @@ export default new VueRouter({
           ]
         }
       ]
+    },
+    {
+      path: '*',
+      component: NotFound
     }
   ]
 })
+
+export default router

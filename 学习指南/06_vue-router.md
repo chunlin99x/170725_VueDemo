@@ -122,7 +122,7 @@
 ## 2). 方式2: <router-view>属性携带数据
     <router-view :msg="msg"></router-view>
 
-# 6. 缓存路由组件: <keep-alive>
+# 6. 缓存路由组件对象: <keep-alive>
     <keep-alive>
       <router-view></router-view>
     </keep-alive>
@@ -134,12 +134,45 @@
 	this.$router.go(-1): 请求(返回)上一个记录路由
 	this.$router.go(1): 请求下一个记录路由
 
-
+	路由跳转:
+		<a href="#/xxx">
+		
 	页面跳转:
 		<a href="/xxx">
 		window.location = '/xxx'
-	
-# 7. 路由总结
+    
+    传递路由参数
+        this.$router.push(`/home/message/detail/${id}`)
+
+# 7. 简化路由路径(使用history模块)
+## 1) 配置
+    mode: 'history'
+## 2) 结果
+    路由路径不再携带#
+## 3) 基本原理
+    hash: 利用window监视history的hash值的变化来实现路径跳转
+    history: 利用 H5 history.pushState API 来完成路由跳转  
+## 4). 问题: 直接在子路由路径上刷新, 样式不正常
+    原因: 在index.html中引入全局样式的路径, 使用的相对路径
+          <link rel="stylesheet" href="./static/css/bootstrap.css">
+    解决: 必须以/开头(代表项目的根路径)
+          <link rel="stylesheet" href="/static/css/bootstrap.css">
+## 5). 配置404界面
+    方式一: 后台配置404页面
+    方式二: 前端配置404组件
+        {
+          path: '*',
+          component: NotFound
+        }
+
+## 8. 监视路由参数变化
+    watch: {
+      '$route' (to, from) {
+        // 对路由变化作出响应...
+      }
+    }
+
+# 9. 路由总结
 ## 1). 分类 
 	后台路由
 	前台路由
